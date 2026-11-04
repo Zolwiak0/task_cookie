@@ -13,17 +13,20 @@ Playwright pozwala uruchomić niezależne sesje obok siebie, więc tutaj JUnit o
 (W kodzie masz zakomentowany print pokazujący start przeglądarek jeśli chcesz się upewnić że startują jednocześnie)
 Jak uruchomić
 Potrzebujesz Javy 17 i Mavena 3.9+. Wszystkie polecenia odpalaj w katalogu z pom.xml.
-- Zainstaluj przeglądarki używane przez Playwright:
-  mvn exec:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium firefox webkit"
+
+Zainstaluj przeglądarki używane przez Playwright:
+
+mvn exec:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium firefox webkit"
 
 Lokalnie
 
 CookieConsentSimpleTest
+
 mvn test "-Dtest=CookieConsentSimpleTest" "-Dbrowser=chromium"
 
 Możesz też podać firefox albo webkit.
 
-'CookieConsentTest'
+CookieConsentTest
 mvn test "-Dtest=CookieConsentTest"
 
 Jeśli chcesz widzieć okna przeglądarek, dopisz "-Dheadless=false".
