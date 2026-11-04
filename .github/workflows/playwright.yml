@@ -1,7 +1,6 @@
 name: Cookie consent tests
 
 on:
-  push:
   workflow_dispatch:
 
 permissions:
