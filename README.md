@@ -58,17 +58,20 @@ Playwright allows independent sessions to run side by side, so here JUnit runs t
 (There’s a commented-out print statement in the code showing when the browsers start, if you want to check that they start at the same time.)
 How to run
 You need Java 17 and Maven 3.9+. Run all commands from the directory containing pom.xml.
-- Install the browsers used by Playwright:
-  mvn exec:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium firefox webkit"
+Install the browsers used by Playwright:
+
+mvn exec:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium firefox webkit"
 
 Locally
 
 CookieConsentSimpleTest
+
 mvn test "-Dtest=CookieConsentSimpleTest" "-Dbrowser=chromium"
 
 You can also use firefox or webkit.
 
 CookieConsentTest
+
 mvn test "-Dtest=CookieConsentTest"
 
 If you want to see the browser windows, add "-Dheadless=false".
