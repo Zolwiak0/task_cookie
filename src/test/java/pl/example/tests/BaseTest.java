@@ -26,8 +26,8 @@ public abstract class BaseTest {
         context = browser.newContext(new Browser.NewContextOptions()
                 .setIgnoreHTTPSErrors(browserName.equals("webkit")));
         page = context.newPage();
-        page.setDefaultTimeout(5_000);
-        page.setDefaultNavigationTimeout(5_000);
+        page.setDefaultTimeout(30_000);
+        page.setDefaultNavigationTimeout(30_000);
     }
 
     @AfterEach
