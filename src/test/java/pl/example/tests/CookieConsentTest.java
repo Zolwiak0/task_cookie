@@ -32,7 +32,7 @@ public class CookieConsentTest extends BaseTest {
                 .filter(cookie -> cookie.name.equals("cookiePolicyGDPR")
                         && cookie.domain.equals(".ing.pl"))
                 .findFirst()
-                .orElseThrow(() -> new AssertionError("Brak cookie zgody"));
+                .orElseThrow(() -> new AssertionError("Consent cookie not found"));
 
         assertEquals("3", consentCookie.value);
     }
