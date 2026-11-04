@@ -2,6 +2,10 @@ package pl.example.tests;
 
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
+
+import java.nio.file.Path;
 
 public abstract class BaseTest {
     private Playwright playwright;
@@ -24,6 +28,7 @@ public abstract class BaseTest {
                         System.getProperty("headless", "false"))));
 
         context = browser.newContext(new Browser.NewContextOptions()
+                .setLocale("pl-PL")
                 .setIgnoreHTTPSErrors(browserName.equals("webkit")));
         page = context.newPage();
         page.setDefaultTimeout(30_000);
@@ -42,4 +47,17 @@ public abstract class BaseTest {
             }
         }
     }
+    @RegisterExtension
+    final TestExecutionExceptionHandler screenshotOnFailure = (ctx, error) -> {
+        try {
+            if (page != null && !page.isClosed()) {
+                page.screenshot(new Page.ScreenshotOptions()
+                        .setPath(Path.of("target/surefire-reports",
+                                "failure-" + System.nanoTime() + ".png")));
+            }
+        } catch (RuntimeException screenshotError) {
+            error.addSuppressed(screenshotError);
+        }
+        throw error;
+    };
 }
