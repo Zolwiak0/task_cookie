@@ -1,7 +1,7 @@
 English version below
-===
+---
 PL
-===
+---
 Słowem wstępu
 Podrzucam dwa alternatywne sposoby rozwiązania w osobnych klasach:
 
@@ -42,9 +42,9 @@ Jeśli będziesz mieć tylko jeden runner testy uruchomią się sekwencyjnie.
 
 Raporty z pipeline’u są do pobrania w sekcji "Artifacts".
 
-=====
+---
 ENG
-=====
+---
 A few words to start: I’m sharing two alternative approaches in separate classes:
 
 CookieConsentSimpleTest — runs the test in one browser.
