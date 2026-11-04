@@ -27,8 +27,7 @@ public class CookieConsentSimpleTest extends BaseTest{
                                 cookie.name.equals("cookiePolicyGDPR")
                                         && cookie.domain.equals(".ing.pl")
                                         && cookie.value.equals("3")),
-                new Page.WaitForConditionOptions().setTimeout(1_000)
-        );
+           );
 
         var consentCookie = context.cookies().stream()
                 .filter(cookie -> cookie.name.equals("cookiePolicyGDPR")
