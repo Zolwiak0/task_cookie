@@ -5,10 +5,11 @@ PL
 Słowem wstępu
 Podrzucam dwa alternatywne sposoby rozwiązania w osobnych klasach:
 
-CookieConsentSimpleTest- odpala test na jednej przeglądarce.
+CookieConsentSimpleTest
+Odpala test na jednej przeglądarce.
 W pipeline ten sam test uruchamia się równolegle dzięki macierzy GitHub Actions.
 
-'CookieConsentTest'
+CookieConsentTest
 Playwright pozwala uruchomić niezależne sesje obok siebie, więc tutaj JUnit odpala ten sam scenariusz równolegle na trzech przeglądarkach — jednym poleceniem:
 (W kodzie masz zakomentowany print pokazujący start przeglądarek jeśli chcesz się upewnić że startują jednocześnie)
 
