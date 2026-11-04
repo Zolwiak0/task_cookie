@@ -11,7 +11,14 @@ W pipeline ten sam test uruchamia się równolegle dzięki macierzy GitHub Actio
 'CookieConsentTest'
 Playwright pozwala uruchomić niezależne sesje obok siebie, więc tutaj JUnit odpala ten sam scenariusz równolegle na trzech przeglądarkach — jednym poleceniem:
 (W kodzie masz zakomentowany print pokazujący start przeglądarek jeśli chcesz się upewnić że startują jednocześnie)
+
+Asercja sprawdza, czy w bieżącej sesji przeglądarki zapisano cookie
+`cookiePolicyGDPR` dla domeny `.ing.pl` z wartością `3`.
+Wartość tę ustaliłem eksperymentalnie dla scenariusza z włączoną zgodą analityczną.
+
+
 Jak uruchomić
+
 Potrzebujesz Javy 17 i Mavena 3.9+. Wszystkie polecenia odpalaj w katalogu z pom.xml.
 
 Zainstaluj przeglądarki używane przez Playwright:
@@ -56,7 +63,12 @@ In the pipeline, the same test runs in parallel using a GitHub Actions matrix.
 CookieConsentTest
 Playwright allows independent sessions to run side by side, so here JUnit runs the same scenario in parallel across three browsers — with a single command.
 (There’s a commented-out print statement in the code showing when the browsers start, if you want to check that they start at the same time.)
+The assertion checks whether the `cookiePolicyGDPR` cookie has been saved
+in the current browser session for the `.ing.pl` domain with a value of `3`.
+I determined this value experimentally for the scenario with analytics consent enabled.
+
 How to run
+
 You need Java 17 and Maven 3.9+. Run all commands from the directory containing pom.xml.
 Install the browsers used by Playwright:
 
