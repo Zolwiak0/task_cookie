@@ -1,6 +1,5 @@
 package pl.example.tests;
 
-import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.example.pages.CookiesPanel;
@@ -26,8 +25,7 @@ public class CookieConsentSimpleTest extends BaseTest{
                         .anyMatch(cookie ->
                                 cookie.name.equals("cookiePolicyGDPR")
                                         && cookie.domain.equals(".ing.pl")
-                                        && cookie.value.equals("3")),
-           );
+                                        && cookie.value.equals("3")));
 
         var consentCookie = context.cookies().stream()
                 .filter(cookie -> cookie.name.equals("cookiePolicyGDPR")
