@@ -1,0 +1,56 @@
+name: Cookie consent tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cookie-consent:
+    name: Cookies - ${{ matrix.browser }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Compile tests
+        run: mvn -B --no-transfer-progress test-compile
+
+      - name: Install browser
+        run: >
+          mvn -B --no-transfer-progress exec:java
+          -Dexec.mainClass=com.microsoft.playwright.CLI
+          -Dexec.args="install --with-deps ${{ matrix.browser }}"
+
+      - name: Run cookie consent test
+        run: >
+          mvn -B --no-transfer-progress test
+          -Dtest=CookieConsentSimpleTest
+          -Dbrowser=${{ matrix.browser }}
+          -Dheadless=true
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.browser }}
+          path: target/surefire-reports/
+          if-no-files-found: ignore
